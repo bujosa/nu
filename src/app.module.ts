@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
+import { YellowModule } from './yellow/yellow.module';
 
 @Module({
-  imports: [],
+  imports: [YellowModule],
   controllers: [],
   providers: [],
 })
