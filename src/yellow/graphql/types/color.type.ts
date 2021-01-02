@@ -14,7 +14,7 @@ export class Color implements IColor, IBaseEntity {
   updateAt: string;
 
   @Field()
-  deleted: string;
+  deleted: boolean;
 
   @Field()
   name: string;

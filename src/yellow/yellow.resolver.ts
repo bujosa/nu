@@ -1,5 +1,6 @@
 import { Query } from '@nestjs/common';
 import { Args, Resolver } from '@nestjs/graphql';
+import { CreateColorInput } from './graphql/inputs/create-color.input';
 import { Color } from './graphql/types/color.type';
 import { YellowService } from './yellow.service';
 
@@ -10,9 +11,9 @@ export class YellowResolver {
   ) {}
 
   public async createColor(
-    @Args('input') createColor: CreateColor,
+    @Args('input') createColorInput: CreateColorInput,
   ): Promise<Color> {
-    return this.yelloService.createColor(createColor);
+    return this.yelloService.createColor(createColorInput);
   }
 
   @Query(return => [Color])
