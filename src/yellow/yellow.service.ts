@@ -2,7 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { EntryNotFoundException } from 'src/common/errors/erros';
+import { gqlToMongoQueryBuilder } from 'src/common/gql-to-mongo/graphql-to-mongo-query.util';
+import { FilterInput } from 'src/common/graphql/inputs/graphql-filter.input';
 import { Color } from './database/color.entity';
+import { CreateColorInput } from './graphql/inputs/create-color.input';
 import { GetColorByIdInput } from './graphql/inputs/get-color-by-id.input';
 
 @Injectable()
@@ -27,38 +30,30 @@ export class YellowService {
     }
   }
 
-  public async getAllBrands(filterInput: FilterInput): Promise<Brand[]> {
+  public async getAllColors(filterInput: FilterInput): Promise<Color[]> {
     try {
-      this.logger.log(getEntitiesLog(Brand.name, filterInput));
+      const query = gqlToMongoQueryBuilder(filterInput, this.colorModel);
 
-      const query = gqlToMongoQueryBuilder(filterInput, this.brandModel);
-
-      const result: Brand[] = await query.exec();
+      const result: Color[] = await query.exec();
 
       return result;
     } catch (error) {
-      this.logger.error(`${JSON.stringify(error)}`);
       throw error;
     }
   }
 
-  public async createBrand(createBrandInput: CreateBrandInput): Promise<Brand> {
+  public async createColor(createColorInput: CreateColorInput): Promise<Color> {
     try {
-      this.logger.log(createEntityLog(Brand.name, createBrandInput));
-      const { name } = createBrandInput;
+      const { name } = createColorInput;
 
-      const slug = generateSlug(name);
-
-      const brand = new this.brandModel({
+      const color = new this.colorModel({
         name,
-        slug,
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       });
 
-      return brand.save();
+      return color.save();
     } catch (error) {
-      this.logger.error(`${JSON.stringify(error)}`);
       throw error;
     }
   }

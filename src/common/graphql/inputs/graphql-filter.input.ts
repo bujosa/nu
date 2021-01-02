@@ -1,6 +1,7 @@
 import { Field, InputType, Int } from '@nestjs/graphql';
 import GraphQLJSON from 'graphql-type-json';
 import { GraphQLSortOperation } from 'src/common/gql-to-mongo/operations/sort';
+import { IBaseGraphqlFilterInput } from 'src/common/interfaces/base-graphql-filter-input.interface';
 
 @InputType()
 export class FilterInput implements IBaseGraphqlFilterInput {
