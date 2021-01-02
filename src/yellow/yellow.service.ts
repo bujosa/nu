@@ -7,11 +7,13 @@ import { FilterInput } from 'src/common/graphql/inputs/graphql-filter.input';
 import { Color } from './database/color.entity';
 import { CreateColorInput } from './graphql/inputs/create-color.input';
 import { GetColorByIdInput } from './graphql/inputs/get-color-by-id.input';
+import { UpdateColorInput } from './graphql/inputs/update-color.input';
 
 @Injectable()
 export class YellowService {
   constructor(
-    @InjectModel(Color.name) private readonly colorModel: Model<Color>,
+    @InjectModel(Color.name)
+    private readonly colorModel: Model<Color>,
   ) {}
 
   public async getColorById(
@@ -58,21 +60,17 @@ export class YellowService {
     }
   }
 
-  public async updateBrand(updateBrandInput: UpdateBrandInput): Promise<Brand> {
+  public async updateColor(updateColorInput: UpdateColorInput): Promise<Color> {
     try {
-      const { data, where } = updateBrandInput;
+      const { name, id } = updateColorInput;
 
-      const { name } = data;
-      const slug = generateSlug(name);
-
-      const updateBrand = {
+      const updateColor = {
         name,
-        slug,
         updatedAt: new Date().toISOString(),
       };
 
-      const result = await this.brandModel
-        .findOneAndUpdate(where, updateBrand, {
+      const result = await this.colorModel
+        .findOneAndUpdate({ id }, updateColor, {
           useFindAndModify: false,
         })
         .exec();
@@ -83,7 +81,6 @@ export class YellowService {
 
       return result;
     } catch (error) {
-      this.logger.error(`${JSON.stringify(error)}`);
       throw error;
     }
   }
