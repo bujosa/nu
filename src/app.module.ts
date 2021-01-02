@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
 import { YellowModule } from './yellow/yellow.module';
+import { HouseModule } from './house/house.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { YellowModule } from './yellow/yellow.module';
       envFilePath: `./`,
     }),
     MongooseModule.forRoot(process.env.MONGO_URL),
+    HouseModule,
   ],
   controllers: [],
   providers: [],
