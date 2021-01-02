@@ -15,7 +15,7 @@ export class Color extends Document implements IBaseEntity, IColor {
   createdAt: string;
 
   @Prop({ required: true })
-  updateAt: string;
+  updatedAt: string;
 
   @Prop({ default: false })
   deleted: boolean;

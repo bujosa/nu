@@ -1,5 +1,4 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { FilterInput } from 'src/common/graphql/inputs/graphql-filter.input';
 import { CreateColorInput } from './graphql/inputs/create-color.input';
 import { GetColorByIdInput } from './graphql/inputs/get-color-by-id.input';
 import { UpdateColorInput } from './graphql/inputs/update-color.input';
@@ -25,11 +24,8 @@ export class YellowResolver {
   }
 
   @Query((returns) => [Color])
-  public async getAllColors(
-    @Args('input', { nullable: true, defaultValue: {} })
-    filterInput: FilterInput,
-  ): Promise<Color[]> {
-    return this.yelloService.getAllColors(filterInput);
+  public async getAllColors(): Promise<Color[]> {
+    return this.yelloService.getAllColors();
   }
 
   @Mutation((of) => Color)

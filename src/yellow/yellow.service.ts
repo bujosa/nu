@@ -2,8 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { EntryNotFoundException } from 'src/common/errors/erros';
-import { gqlToMongoQueryBuilder } from 'src/common/gql-to-mongo/graphql-to-mongo-query.util';
-import { FilterInput } from 'src/common/graphql/inputs/graphql-filter.input';
 import { Color } from './database/color.entity';
 import { CreateColorInput } from './graphql/inputs/create-color.input';
 import { GetColorByIdInput } from './graphql/inputs/get-color-by-id.input';
@@ -32,11 +30,9 @@ export class YellowService {
     }
   }
 
-  public async getAllColors(filterInput: FilterInput): Promise<Color[]> {
+  public async getAllColors(): Promise<Color[]> {
     try {
-      const query = gqlToMongoQueryBuilder(filterInput, this.colorModel);
-
-      const result: Color[] = await query.exec();
+      const result: Color[] = await this.colorModel.find().exec();
 
       return result;
     } catch (error) {

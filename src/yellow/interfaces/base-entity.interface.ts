@@ -1,6 +1,6 @@
 export interface IBaseEntity {
   id: string;
   createdAt: string;
-  updateAt: string;
+  updatedAt: string;
   deleted: boolean;
 }

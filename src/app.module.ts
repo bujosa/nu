@@ -13,7 +13,7 @@ import { HouseModule } from './house/house.module';
       context: ({ req }) => ({ headers: req.headers }),
     }),
     ConfigModule.forRoot({
-      envFilePath: `./`,
+      isGlobal: true,
     }),
     MongooseModule.forRoot(process.env.MONGO_URL),
     HouseModule,
