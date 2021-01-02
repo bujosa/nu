@@ -4,7 +4,7 @@ import { hasObjectField } from './utils';
 import {
   FieldNotDefinedError,
   GqlOperationNotDefinedError,
-} from '@common/common/errors/errors';
+} from 'src/common/errors/erros';
 
 export enum GraphQLSortOperation {
   asc = 'asc',

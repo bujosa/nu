@@ -1,4 +1,5 @@
 import { Prop, SchemaFactory, Schema } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
 import { IBaseEntity } from '../interfaces/base-entity.interface';
 import { IColor } from '../interfaces/color-entity.interface';
 
@@ -24,4 +25,6 @@ export const ColorSchema = SchemaFactory.createForClass(Color);
 
 ColorSchema.pre('save', function (next) {
   this.id = this._id;
+
+  next();
 });

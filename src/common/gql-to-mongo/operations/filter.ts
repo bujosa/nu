@@ -5,12 +5,12 @@ import {
   GraphQlOperationsEnum,
   MongooseOperationsEnum,
 } from '../graphql-to-mongo.util';
-import { DocumentQuery, Document, Schema } from 'mongoose';
+import { Document, Schema, DocumentQuery } from 'mongoose';
 import { hasObjectField } from './utils';
 import {
   FieldNotDefinedError,
   GqlOperationNotDefinedError,
-} from '@common/common/errors/errors';
+} from 'src/common/errors/erros';
 
 export function graphqlToMongoQueryUtil(
   queryBuilder: DocumentQuery<Document[], Document>,
