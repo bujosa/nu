@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { EntryNotFoundException } from 'src/common/errors/erros';
 import { Color } from './database/color.entity';
 import { GetColorByIdInput } from './graphql/inputs/get-color-by-id.input';
 
@@ -22,7 +23,6 @@ export class YellowService {
 
       return result;
     } catch (error) {
-      this.logger.error(`${JSON.stringify(error)}`);
       throw error;
     }
   }
