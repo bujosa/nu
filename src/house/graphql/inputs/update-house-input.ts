@@ -7,12 +7,12 @@ export class UpdateHouseInput implements IUpdateHouseInput {
   @Field((type) => ID)
   id: string;
 
-  @Field()
+  @Field({ nullable: true })
   name: string;
 
-  @Field((type) => ID)
+  @Field((type) => ID, { nullable: true })
   color: Schema.Types.ObjectId;
 
-  @Field((type) => Int)
+  @Field((type) => Int, { nullable: true })
   rooms: number;
 }
