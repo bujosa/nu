@@ -1,8 +1,8 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { IGetColorByIdInput } from 'src/yellow/interfaces/get-color-by-id-input.interface';
+import { IGetEntityByIdInput } from 'src/common/interfaces/get-entity-by-id-input.interface';
 
 @InputType()
-export class GetColorByIdInput implements IGetColorByIdInput {
+export class GetColorByIdInput implements IGetEntityByIdInput {
   @Field()
   id: string;
 }
