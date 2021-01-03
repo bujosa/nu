@@ -33,11 +33,11 @@ export class House extends Document implements IBaseEntity, IHouse {
   deleted: boolean;
 }
 
-export const CarSchema = SchemaFactory.createForClass(House);
+export const HouseSchema = SchemaFactory.createForClass(House);
 
-CarSchema.plugin(MongooseAutoPopulate);
+HouseSchema.plugin(MongooseAutoPopulate);
 
-CarSchema.pre('save', function (next) {
+HouseSchema.pre('save', function (next) {
   this.id = this._id;
 
   next();
