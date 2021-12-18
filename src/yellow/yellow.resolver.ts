@@ -5,33 +5,33 @@ import { UpdateColorInput } from './graphql/inputs/update-color.input';
 import { Color } from './graphql/types/color.type';
 import { YellowService } from './yellow.service';
 
-@Resolver((of) => Color)
+@Resolver(() => Color)
 export class YellowResolver {
   constructor(private yelloService: YellowService) {}
 
-  @Query((returns) => Color)
+  @Query(() => Color)
   public async getColorById(
     @Args('input') getColorByIdInput: GetColorByIdInput,
   ): Promise<Color> {
-    return this.yelloService.getColorById(getColorByIdInput);
+    return await this.yelloService.getColorById(getColorByIdInput);
   }
 
-  @Mutation((of) => Color)
+  @Mutation(() => Color)
   public async createColor(
     @Args('input') createColorInput: CreateColorInput,
   ): Promise<Color> {
-    return this.yelloService.createColor(createColorInput);
+    return await this.yelloService.createColor(createColorInput);
   }
 
-  @Query((returns) => [Color])
+  @Query(() => [Color])
   public async getAllColors(): Promise<Color[]> {
-    return this.yelloService.getAllColors();
+    return await this.yelloService.getAllColors();
   }
 
-  @Mutation((of) => Color)
+  @Mutation(() => Color)
   public async updateBrand(
     @Args('input') updateColorInput: UpdateColorInput,
   ): Promise<Color> {
-    return this.yelloService.updateColor(updateColorInput);
+    return await this.yelloService.updateColor(updateColorInput);
   }
 }
