@@ -1,13 +1,11 @@
 import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
-import { Schema } from 'mongoose';
 import { IBaseEntity } from 'src/common/interfaces/base-entity.interface';
 import { IHouse } from 'src/house/interfaces/house-entity.interface';
 import { Color } from 'src/yellow/graphql/types/color.type';
-import { IColor } from 'src/yellow/interfaces/color-entity.interface';
 
 @ObjectType()
 export class House implements IHouse, IBaseEntity {
-  @Field((type) => ID)
+  @Field(() => ID)
   id: string;
 
   @Field()
@@ -22,9 +20,9 @@ export class House implements IHouse, IBaseEntity {
   @Field()
   name: string;
 
-  @Field((type) => Int)
+  @Field(() => Int)
   rooms: number;
 
-  @Field((type) => Color)
-  color: IColor | Schema.Types.ObjectId;
+  @Field(() => Color)
+  color: Color;
 }
