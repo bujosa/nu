@@ -18,7 +18,5 @@ import { HouseModule } from './house/house.module';
     MongooseModule.forRoot(process.env.MONGO_URL),
     HouseModule,
   ],
-  controllers: [],
-  providers: [],
 })
 export class AppModule {}
