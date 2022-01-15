@@ -22,7 +22,7 @@ export class House extends Document implements IBaseEntity, IHouse {
     ref: Color.name,
     autopopulate: { maxDepth: 2 },
   })
-  color: Color;
+  color: Color | string;
 
   @Prop({ required: true })
   createdAt: string;

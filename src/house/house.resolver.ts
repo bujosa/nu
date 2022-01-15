@@ -13,25 +13,25 @@ export class HouseResolver {
   public async getHouseById(
     @Args('input') getHouseByIdInput: GetHouseByIdInput,
   ): Promise<House> {
-    return this.houseService.getHouseById(getHouseByIdInput);
+    return await this.houseService.getHouseById(getHouseByIdInput);
   }
 
   @Mutation(() => House)
   public async createHouse(
     @Args('input') createHouseInput: CreateHouseInput,
   ): Promise<House> {
-    return this.houseService.createHouse(createHouseInput);
+    return await this.houseService.createHouse(createHouseInput);
   }
 
   @Query(() => [House])
   public async getAllHouses(): Promise<House[]> {
-    return this.houseService.getAllHouses();
+    return await this.houseService.getAllHouses();
   }
 
   @Mutation(() => House)
   public async updateHouse(
     @Args('input') updateHouseInput: UpdateHouseInput,
   ): Promise<House> {
-    return this.houseService.updateHouse(updateHouseInput);
+    return await this.houseService.updateHouse(updateHouseInput);
   }
 }

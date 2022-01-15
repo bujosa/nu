@@ -24,5 +24,5 @@ export class House implements IHouse, IBaseEntity {
   rooms: number;
 
   @Field(() => Color)
-  color: Color;
+  color: Color | string;
 }
