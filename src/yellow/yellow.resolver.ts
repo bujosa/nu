@@ -13,25 +13,25 @@ export class YellowResolver {
   public async getColorById(
     @Args('input') getColorByIdInput: GetColorByIdInput,
   ): Promise<Color> {
-    return await this.yelloService.getColorById(getColorByIdInput);
+    return this.yelloService.getColorById(getColorByIdInput);
   }
 
   @Mutation(() => Color)
   public async createColor(
     @Args('input') createColorInput: CreateColorInput,
   ): Promise<Color> {
-    return await this.yelloService.createColor(createColorInput);
+    return this.yelloService.createColor(createColorInput);
   }
 
   @Query(() => [Color])
   public async getAllColors(): Promise<Color[]> {
-    return await this.yelloService.getAllColors();
+    return this.yelloService.getAllColors();
   }
 
   @Mutation(() => Color)
   public async updateBrand(
     @Args('input') updateColorInput: UpdateColorInput,
   ): Promise<Color> {
-    return await this.yelloService.updateColor(updateColorInput);
+    return this.yelloService.updateColor(updateColorInput);
   }
 }
